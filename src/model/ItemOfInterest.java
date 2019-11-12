@@ -30,6 +30,14 @@ public class ItemOfInterest implements ItemOfInterestInterface {
 	}
 	
 
+	public ItemOfInterest(String name, String description, ArrayList<Info> infos, ArrayList<Receipt> receipts) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.infos = infos;
+		this.receipts = receipts;
+	}
+
 	@Override
 	public boolean registerInfo(Info i) {
 		return infos.add(i);

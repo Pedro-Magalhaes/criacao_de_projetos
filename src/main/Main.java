@@ -1,12 +1,15 @@
 package main;
 
+import java.io.IOException;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.google.gson.Gson;
+
+import DAO.PropertyDAO;
 import model.*;
 import model.File.FileType;
-
 
 public class Main {
 
@@ -14,6 +17,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		Gson gson = new Gson();
 		File f = new File();
 		f.setName("img");
 		f.setPath("img/foo.png");
@@ -44,8 +48,17 @@ public class Main {
 		
 		p.addItem(item);
 		
-		printProperty(p);
+//		printProperty(p);
+		PropertyDAO pd = PropertyDAO.getPropertyDAOInstance();
+//		pd.saveUserData("01", p);
 		
+		try {
+			Property pfromfile = pd.loadUserData("01");
+			printProperty(pfromfile);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static boolean addProperty(Property p) {
@@ -55,7 +68,7 @@ public class Main {
 	public static void printProperty(Property p) {
 		System.out.println( "Name: "+ p.getName() + "\n" + "desc: " + p.getDescription());
 		System.out.println("Itens:");
-		ArrayList<ItemOfInterestInterface> it = p.getItens();
+		ArrayList<ItemOfInterest> it = p.getItens();
 		for (ItemOfInterestInterface item : it) {
 			ArrayList<Receipt> rs = item.getReceipts();
 			ArrayList<Info> infos = item.getInfos();

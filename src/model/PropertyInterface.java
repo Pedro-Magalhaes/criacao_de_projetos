@@ -16,10 +16,10 @@ public interface PropertyInterface {
 
 	void setValue(int value);
 	
-	public ArrayList<ItemOfInterestInterface> getItens();
+	public ArrayList<ItemOfInterest> getItens();
 
-	public void setItens(ArrayList<ItemOfInterestInterface> itens);
+	public void setItens(ArrayList<ItemOfInterest> itens);
 	
-	public boolean addItem(ItemOfInterestInterface item);
+	public boolean addItem(ItemOfInterest item);
 
 }

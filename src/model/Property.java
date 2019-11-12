@@ -7,7 +7,7 @@ public class Property implements PropertyInterface {
 	private String name;
 	private String description;
 	private int value;
-	private ArrayList<ItemOfInterestInterface> itens;
+	private ArrayList<ItemOfInterest> itens;
 	
 	/**
 	 * @param name
@@ -19,12 +19,12 @@ public class Property implements PropertyInterface {
 		this.name = name;
 		this.description = description;
 		this.value = value;
-		this.itens = new ArrayList<ItemOfInterestInterface>();
+		this.itens = new ArrayList<ItemOfInterest>();
 	}
 	
 	public Property() {
 		super();
-		this.itens = new ArrayList<ItemOfInterestInterface>();
+		this.itens = new ArrayList<ItemOfInterest>();
 	}
 	
 	@Override
@@ -52,15 +52,15 @@ public class Property implements PropertyInterface {
 		this.value = value;
 	}
 	@Override
-	public ArrayList<ItemOfInterestInterface> getItens() {
+	public ArrayList<ItemOfInterest> getItens() {
 		return itens;
 	}
 	@Override
-	public void setItens(ArrayList<ItemOfInterestInterface> itens) {
+	public void setItens(ArrayList<ItemOfInterest> itens) {
 		this.itens = itens;
 	}
 	@Override
-	public boolean addItem(ItemOfInterestInterface item) {
+	public boolean addItem(ItemOfInterest item) {
 		return this.itens.add(item);
 	}
 	
