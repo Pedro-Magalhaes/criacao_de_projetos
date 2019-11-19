@@ -9,7 +9,7 @@ import model.Property;
 // Cadastrar uma propriedade
 public class UC1 {
 
-	private String userId = "01"; // para essa implementação usaremos apenas um usuario
+	private String userId = "01"; // para essa implementação usarei apenas um usuário
 	private ArrayList<Property> properties;
 	PropertyDAO pDAO = PropertyDAO.getPropertyDAOInstance();
 	
