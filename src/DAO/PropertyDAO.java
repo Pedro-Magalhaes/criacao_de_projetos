@@ -6,12 +6,16 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
 import model.Property;
@@ -19,7 +23,8 @@ import model.Property;
 public class PropertyDAO {
 	
 	private final String path = "data";
-	private final Gson gson = new Gson();
+	Type propertiesType = new TypeToken<ArrayList<Property>>(){}.getType();
+	private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	private static PropertyDAO instance;
 	
 	
@@ -36,19 +41,22 @@ public class PropertyDAO {
 		return instance;
 	}
 	
-	public Property loadUserData(String userid) throws IOException {
+	public ArrayList<Property> loadUserData(String userid) throws IOException {
 		File f = new File( String.join(File.separator, path,userid+".txt") );
-		System.out.println(f.getAbsolutePath());
+//		System.out.println(f.getAbsolutePath());
 		JsonReader reader = new JsonReader(new FileReader(f));
-		Property p = this.gson.fromJson(reader, Property.class);
-		System.out.println(p.toString());
-		return p; 
+		ArrayList<Property> ps = this.gson.fromJson(reader, propertiesType);
+//		for (Property property : ps) {
+//			System.out.println(property.toString());
+//		}
+		
+		return ps; 
 	}
 	
-	public void saveUserData(String userid, Property p) {
+	public void saveUserData(String userid, ArrayList<Property> ps) {
 		try {
 			FileWriter fw = new FileWriter(String.join(File.separator, path,userid+".txt"));
-			this.gson.toJson(p, fw);
+			this.gson.toJson(ps, fw);
 			fw.flush();
 			fw.close();
 		} catch (JsonIOException | IOException e) {

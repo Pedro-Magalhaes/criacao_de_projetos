@@ -48,47 +48,52 @@ public class Main {
 		
 		p.addItem(item);
 		
-//		printProperty(p);
+
 		PropertyDAO pd = PropertyDAO.getPropertyDAOInstance();
-//		pd.saveUserData("01", p);
-		
-		try {
-			Property pfromfile = pd.loadUserData("01");
-			printProperty(pfromfile);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ArrayList<Property> ps = new ArrayList<Property>();
+		ps.add(p);
+		pd.saveUserData("01", ps);
+		printProperties(ps);
+//		try {
+//			ArrayList<Property> psfromfile = pd.loadUserData("01");
+//			printProperties(psfromfile);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	public static boolean addProperty(Property p) {
 		return properties.add(p);
 	}
 	
-	public static void printProperty(Property p) {
-		System.out.println( "Name: "+ p.getName() + "\n" + "desc: " + p.getDescription());
-		System.out.println("Itens:");
-		ArrayList<ItemOfInterest> it = p.getItens();
-		for (ItemOfInterestInterface item : it) {
-			ArrayList<Receipt> rs = item.getReceipts();
-			ArrayList<Info> infos = item.getInfos();
-			System.out.println("\tReceipts:");
-			for (Receipt r : rs) {
-				System.out.println("\t\tdate: "+r.getData().toString() + "\n\t\tvalue: " + r.getValue());
-			}
-			System.out.println("\tinfos:");
-			for (Info i : infos) {
-				System.out.println("\t\ttitle: "+i.getTitle()+ "\n\t\tdesc: " + i.getDescription());
-				ArrayList<File> fs = i.getFiles();
-				if( fs.isEmpty() == false) {
-					System.out.println("\t\tfiles:");
-					for (File f : fs) {
-						System.out.println("\t\t\tName: "+f.getName()+ "\n\t\t\tPath: " + f.getPath());
+	public static void printProperties(ArrayList<Property> ps) {
+		for (Property p : ps) {
+			System.out.println( "Name: "+ p.getName() + "\n" + "desc: " + p.getDescription());
+			System.out.println("Itens:");
+			ArrayList<ItemOfInterest> it = p.getItens();
+			for (ItemOfInterestInterface item : it) {
+				ArrayList<Receipt> rs = item.getReceipts();
+				ArrayList<Info> infos = item.getInfos();
+				System.out.println("\tReceipts:");
+				for (Receipt r : rs) {
+					System.out.println("\t\tdate: "+r.getData().toString() + "\n\t\tvalue: " + r.getValue());
+				}
+				System.out.println("\tinfos:");
+				for (Info i : infos) {
+					System.out.println("\t\ttitle: "+i.getTitle()+ "\n\t\tdesc: " + i.getDescription());
+					ArrayList<File> fs = i.getFiles();
+					if( fs.isEmpty() == false) {
+						System.out.println("\t\tfiles:");
+						for (File f : fs) {
+							System.out.println("\t\t\tName: "+f.getName()+ "\n\t\t\tPath: " + f.getPath());
+						}
 					}
 				}
-			}
-			
+				
+			}			
 		}
+		
 	}
 
 }
