@@ -1,15 +1,11 @@
 package main;
 
-import java.io.IOException;
-import java.text.DateFormat;
+
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-import com.google.gson.Gson;
-
-import DAO.PropertyDAO;
 import model.*;
 import model.MyFile.FileType;
 import controller.*;
@@ -18,63 +14,12 @@ import controller.*;
 public class Main {
 
 	static ArrayList<Property> properties = new ArrayList<Property>();
-	static PropertyDAO pd;
-	static ArrayList<Property> ps;
 	static UC1 pController = new UC1();
-	public static void main(String[] args) {
-		
+	
+	public static void main(String[] args) {		
 		mainloop();
-		
-//		pd = PropertyDAO.getPropertyDAOInstance();
-//		File f = new File();
-//		f.setName("img");
-//		f.setPath("img/foo.png");
-//		f.setType(FileType.PNG);
-//		f.setSize(0);
-//		
-//		Info i = new Info("receitas","minhas receitas casa 01");
-//		i.addFile(f);
-//		
-//		Property p = new Property();
-//		p.setDescription("minha casa");
-//		p.setName("casa");
-//		p.setValue(1000);
-//		
-//		
-//		
-//		ArrayList<File> ff = i.getFiles();
-		
-//		for (File file : ff) {
-//			System.out.print(file.getName() + " " + file.getPath());
-//		}
-		
-//		Receipt r = new Receipt( Date.from(Instant.now()),2,false);
-//		
-//		ItemOfInterest item = new ItemOfInterest("primeiro item","primeiro item de interesse");
-//		item.addReceipt(r);
-//		item.registerInfo(i);
-//		
-//		p.addItem(item);
-		
-
-		
-//		ArrayList<Property> ps = new ArrayList<Property>();
-//		ps.add(p);
-//		pd.saveUserData(user, ps);
-//		printProperties(ps);
-//		try {
-//			ArrayList<Property> psfromfile = pd.loadUserData("01");
-//			printProperties(psfromfile);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 	}
-	
-	public static boolean addProperty(Property p) {
-		return ps.add(p);
-	}
-	
+		
 	public static void printProperties(ArrayList<Property> ps) {
 		for (Property p : ps) {
 			printProperty(p);
@@ -120,7 +65,7 @@ public class Main {
 			switch (option) {
 			case 0:
 				pController.save();
-				return;
+				System.exit(0);
 			case 1:
 				createProperty(sc);
 				break;
@@ -139,17 +84,16 @@ public class Main {
 		String description;
 		int value;
 		try {
-			System.out.println("Digite o nome da propriedade(sem espaço):");
+			System.out.println("Digite o nome da propriedade(sem espaco):");
 			name = sc.next();
 			sc.reset();
-			System.out.println("Digite uma descrição(sem espaço):");
+			System.out.println("Digite uma descricao(sem espaco):");
 			description = sc.next();
 			sc.reset();
 			System.out.println("Digite o valor inteiro:");
 			value = sc.nextInt();
 			sc.reset();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Erro ao criar propriedade! (Crash)");
 			return;
@@ -157,7 +101,7 @@ public class Main {
 		if(pController.createNewProperty(name, description, value) == true) {
 			System.out.println("Propriedade criada com sucesso!");
 		} else {
-			System.out.println("Erro ao criar propriedade, o nome era válido? tem que ser não vazio e único");
+			System.out.println("Erro ao criar propriedade, o nome era valido? tem que ser nao vazio e unico");
 		}
 		
 	}
@@ -205,20 +149,19 @@ public class Main {
     	String name;
 		String description;
 		try {
-			System.out.println("Digite o nome da propriedade(sem espaço):");
+			System.out.println("Digite o nome da propriedade(sem espaÃ§o):");
 			name = sc.next();
 			sc.reset();
-			System.out.println("Digite uma descrição(sem espaço):");
+			System.out.println("Digite uma descriÃ§ao(sem espaÃ§o):");
 			description = sc.next();
 			sc.reset();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Erro ao criar Item! (Crash)");
 			return;
 		}
 		if(name.equals("")) {
-			System.out.println("não foi possivel criar o Item (nome vazio)");
+			System.out.println("nao foi possivel criar o Item (nome vazio)");
 			return;
 		}
 		ItemOfInterest i = new ItemOfInterest(name,description);
@@ -274,7 +217,7 @@ public class Main {
             	
             	System.out.println("\tFile: " + f.getPath());
             	
-            	System.out.println("Digite 0 para voltar." + "1 para abrir a imagem");
+            	System.out.println("Digite 0 para voltar." + "\ndigite 1 para abrir a imagem");
             	option = getOption(sc,"ReceiptInterface erro");
             	if(option == 1) {
             		new Thread(() -> u3.openImage(f)).start(); 
@@ -312,7 +255,7 @@ public class Main {
 			System.out.println("Digite o nome do anexo ao recibo:");
 			nome = sc.next();
 			sc.reset();
-			System.out.println("Digite uma descriçao:");
+			System.out.println("Digite uma descricao:");
 			desc = sc.next();
 			sc.reset();
 			System.out.println("Digite o path relativo da imagem:");
@@ -326,7 +269,6 @@ public class Main {
 			r.registerInfo(info);
 			i.addReceipt(r);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Erro ao criar propriedade! (Crash)");
 			return;
@@ -336,7 +278,7 @@ public class Main {
 	private enum PropertyOptions {
 		Terminar(0,"Terminar programa"),
 		Criar(1,"Criar nova propriedade"),
-		Mostrar(2,"Selceionar uma propriedade existente");
+		Mostrar(2,"Selecionar uma propriedade existente");
 		private final int number;
 		private final String frase;
 		PropertyOptions(int i, String f) {
