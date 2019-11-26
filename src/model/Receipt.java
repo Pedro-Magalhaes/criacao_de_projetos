@@ -75,6 +75,11 @@ public class Receipt implements ReceiptInterface {
 	public void setInformations(ArrayList<Info> informations) {
 		this.informations = informations;
 	}
+
+	@Override
+	public String toString() {
+		return "Receipt [data=" + data + ", value=" + value + ", cash=" + cash + ", informations=" + informations + "]";
+	}
 	
 	
 }

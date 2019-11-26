@@ -14,9 +14,9 @@
             "files": [
               {
                 "name": "img",
-                "path": "img/foo.png",
+                "path": "data/img/r1.jpg",
                 "size": 0,
-                "type": "PNG"
+                "type": "JPG"
               }
             ]
           }
@@ -26,7 +26,53 @@
             "data": "Nov 19, 2019 12:04:49 AM",
             "value": 2,
             "cash": false,
-            "informations": []
+            "informations": [
+              {
+                "title": "recibo de pagamento 1",
+                "description": "recibo com imagem",
+                "files": [
+                  {
+                    "name": "img",
+                    "path": "data/img/r2.png",
+                    "size": 0,
+                    "type": "JPG"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "super",
+    "description": "ap",
+    "value": 10,
+    "itens": [
+      {
+        "name": "item",
+        "description": "item1",
+        "infos": [],
+        "receipts": [
+          {
+            "data": "Nov 26, 2019 2:51:37 AM",
+            "value": 1000,
+            "cash": true,
+            "informations": [
+              {
+                "title": "foto",
+                "description": "fotoR1",
+                "files": [
+                  {
+                    "name": "foto",
+                    "path": "data/img/r1.jpg",
+                    "size": 1,
+                    "type": "JPG"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }

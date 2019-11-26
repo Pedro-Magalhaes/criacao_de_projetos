@@ -1,16 +1,16 @@
 package model;
 
-public class File implements FileInterface {
+public class MyFile implements FileInterface {
 	private String name;
 	private String path;
 	private int size;
 	private FileType type;
 	
-	public File() {
+	public MyFile() {
 		super();
 	}
 
-	public File(String name, String path, int size, FileType type) {
+	public MyFile(String name, String path, int size, FileType type) {
 		super();
 		this.name = name;
 		this.path = path;
@@ -57,6 +57,15 @@ public class File implements FileInterface {
 	public void setType(FileType type) {
 		this.type = type;
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "File [name=" + name + ", path=" + path + ", size=" + size + ", type=" + type + "]";
+	}
+
+
 
 	public enum FileType {JPG,PNG,PDF}
 	

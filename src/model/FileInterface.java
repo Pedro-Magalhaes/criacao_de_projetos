@@ -1,6 +1,6 @@
 package model;
 
-import model.File.FileType;
+import model.MyFile.FileType;
 
 public interface FileInterface {
 

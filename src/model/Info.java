@@ -6,9 +6,9 @@ public class Info implements InfoInterface {
 	
 	private String title;
 	private String description;
-	private ArrayList<File> files;
+	private ArrayList<MyFile> files;
 	
-	public Info(String title, String description, ArrayList<File> files) {
+	public Info(String title, String description, ArrayList<MyFile> files) {
 		super();
 		this.title = title;
 		this.description = description;
@@ -19,12 +19,12 @@ public class Info implements InfoInterface {
 		super();
 		this.title = title;
 		this.description = description;
-		this.files = new ArrayList<File>();
+		this.files = new ArrayList<MyFile>();
 	}
 	
 	public Info() {
 		super();
-		this.files = new ArrayList<File>();
+		this.files = new ArrayList<MyFile>();
 	}
 
 	@Override
@@ -48,21 +48,28 @@ public class Info implements InfoInterface {
 	}
 
 	@Override
-	public ArrayList<File> getFiles() {
+	public ArrayList<MyFile> getFiles() {
 		return files;
 	}
 
 	@Override
-	public void setFiles(ArrayList<File> files) {
+	public void setFiles(ArrayList<MyFile> files) {
 		this.files = files;
 	}
 
 	// Adiciona arquivo recebido ao final do array
 	@Override
-	public boolean addFile(File f) {
+	public boolean addFile(MyFile f) {
 		if(f == null) {
 			return false;
 		}
 		return files.add(f);		
 	}
+
+	@Override
+	public String toString() {
+		return "Info [title=" + title + ", description=" + description + ", files=" + files + "]";
+	}
+	
+	
 }

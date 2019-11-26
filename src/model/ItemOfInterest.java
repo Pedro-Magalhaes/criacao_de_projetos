@@ -88,4 +88,10 @@ public class ItemOfInterest implements ItemOfInterestInterface {
 		this.receipts = receipts;
 	}
 
+	@Override
+	public String toString() {
+		return "ItemOfInterest [name=" + name + ", description=" + description + ", infos=" + infos + ", receipts="
+				+ receipts + "]";
+	}
+
 }

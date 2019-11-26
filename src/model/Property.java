@@ -63,5 +63,11 @@ public class Property implements PropertyInterface {
 	public boolean addItem(ItemOfInterest item) {
 		return this.itens.add(item);
 	}
+
+	@Override
+	public String toString() {
+		return "Property [name=" + name + ", description=" + description + ", value=" + value + ", itens=" + itens
+				+ "]";
+	}
 	
 }

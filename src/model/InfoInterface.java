@@ -12,11 +12,11 @@ public interface InfoInterface {
 
 	void setDescription(String description);
 
-	ArrayList<File> getFiles();
+	ArrayList<MyFile> getFiles();
 
-	void setFiles(ArrayList<File> files);
+	void setFiles(ArrayList<MyFile> files);
 
 	// Adiciona arquivo recebido ao final do array
-	boolean addFile(File f);
+	boolean addFile(MyFile f);
 
 }
